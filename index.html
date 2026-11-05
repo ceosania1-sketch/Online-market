@@ -1,67 +1,79 @@
- <!DOCTYPE html>
-<html lang="ur">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lahore Suit Ghar</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 0; background: #fff5f7; text-align: center; }
-.header { background: #d6336c; color: white; padding: 20px; }
-.header h1 { margin: 0; font-size: 26px; }
-.header p { margin: 5px 0 0; font-size: 14px; }
-.container { padding: 15px; }
-.card { background: white; border-radius: 12px; padding: 12px; margin-bottom: 18px; box-shadow: 0 2px 8px #ddd; text-align: left; }
-.card img { width: 100%; border-radius: 10px; }
-.card h2 { font-size: 18px; margin: 10px 0 5px; }
-.card p { margin: 5px 0; color: #555; font-size: 14px; }
-.price { font-size: 20px; font-weight: bold; color: #d6336c; }
-.btn { display: block; background: #25D366; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px; font-size: 16px; }
-.footer { padding: 15px; font-size: 13px; color: #777; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA FASHION | Luxury Clothing</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="header">
-  <h1>Lahore Suit Ghar</h1>
-  <p>Markaz ke rate pe ache suit - Ghar bethay order karein</p>
-  <p>WhatsApp: 03015045169</p>
-</div>
+  <header>
+    <h1>AURA <span>FASHION</span></h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Collection</a>
+      <button onclick="openCart()">Cart 🛍️ <span id="cartCount">0</span></button>
+      <button onclick="openAdmin()">Admin</button>
+    </nav>
+  </header>
 
-<div class="container">
- <div class="card">
-  <img src="NAYI-PHOTO-KA-NAAM.jpg" alt="Suit">
-  <h2>YAHAN SUIT KA NAAM LIKHO</h2>
-  <p>Kapra: Lawn | 3 Piece</p>
-  <div class="price">Rs. YAHAN PRICE LIKHO</div>
-  <a class="btn" href="https://wa.me/923015045169?text=Assalam-o-Alaikum!%20Mujhe%20ye%20suit%20chahiye">WhatsApp pe Order Karein</a>
- </div>
+  <section class="hero" id="home">
+    <div>
+      <p class="gold">THE NEW COLLECTION</p>
+      <h2>STYLE IS<br>YOUR <span>AURA.</span></h2>
+      <p>Discover fashion that defines you.</p>
+      <a href="#products" class="shop-btn">SHOP NOW</a>
+    </div>
+  </section>
 
-  <!-- SUIT 1 - Yahan se copy kar ke naya suit banao -->
-  <div class="card">
-    <img src="suit1.jpg" alt="Suit 1">
-    <h2>Lawn Suit - Gulab Design</h2>
-    <p>Kapra: Lawn | 3 Piece</p>
-    <div class="price">Rs. 1900</div>
-    <a class="btn" href="https://wa.me/923015045169?text=Assalam-o-Alaikum!%20Mujhe%20ye%20suit%20chahiye:%20Lawn%20Suit%20-%20Gulab%20Design%20Price%201900">WhatsApp pe Order Karein</a>
-  </div>
-  <!-- SUIT 1 khatam -->
+  <section class="products-section" id="products">
+    <p class="gold">OUR COLLECTION</p>
+    <h2>Latest Products</h2>
+    <div id="productList" class="product-grid"></div>
+  </section>
 
-  <!-- SUIT 2 -->
-  <div class="card">
-    <img src="suit2.jpg" alt="Suit 2">
-    <h2>Cotton Suit - Neela Design</h2>
-    <p>Kapra: Cotton | 2 Piece</p>
-    <div class="price">Rs. 1600</div>
-    <a class="btn" href="https://wa.me/923015045169?text=Assalam-o-Alaikum!%20Mujhe%20ye%20suit%20chahiye:%20Cotton%20Suit%20-%20Neela%20Design%20Price%201600">WhatsApp pe Order Karein</a>
-  </div>
-  <!-- SUIT 2 khatam -->
+  <section id="adminPanel" class="panel hidden">
+    <button class="close" onclick="closeAdmin()">✕</button>
+    <h2>ADMIN PANEL</h2>
+    <p>Only the store owner should manage products.</p>
 
-</div>
+    <div id="loginArea">
+      <input type="password" id="adminPassword" placeholder="Admin password">
+      <button onclick="loginAdmin()">LOGIN</button>
+    </div>
 
-<div class="footer">
-  Payment: JazzCash ya Cash on Delivery<br>
-  Lahore Suit Ghar - Shukriya!
-</div>
+    <div id="adminArea" class="hidden">
+      <h3>Add New Product</h3>
+      <input id="productTitle" placeholder="Product title">
+      <input id="productPrice" type="number" min="1" placeholder="Price (PKR)">
+      <textarea id="productDescription" placeholder="Product description"></textarea>
+      <label>Product picture</label>
+      <input id="productImage" type="file" accept="image/*">
+      <button onclick="addProduct()">ADD PRODUCT</button>
+      <button onclick="logoutAdmin()">LOG OUT</button>
+      <h3>Manage Products</h3>
+      <div id="adminProducts"></div>
+    </div>
+  </section>
 
+  <section id="cartPanel" class="panel hidden">
+    <button class="close" onclick="closeCart()">✕</button>
+    <h2>YOUR SHOPPING CART</h2>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal">Total: Rs. 0</h3>
+    <input id="customerName" placeholder="Your name">
+    <input id="customerPhone" placeholder="Your phone number">
+    <input id="customerAddress" placeholder="Delivery address">
+    <button onclick="checkout()">ORDER ON WHATSAPP</button>
+  </section>
+
+  <footer>
+    <h2>AURA FASHION</h2>
+    <p>Elegance in every detail.</p>
+    <p>© 2026 AURA FASHION. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
